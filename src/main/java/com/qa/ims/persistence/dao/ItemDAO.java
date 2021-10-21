@@ -1,6 +1,7 @@
 package com.qa.ims.persistence.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -44,7 +45,19 @@ public class ItemDAO implements Dao<Item> {
 	@Override
 	public Item read(Long id) {
 		try {Connection connection = DBUtils.getInstance().getConnection();
+		PreparedStatement statement = connection.prepareStatement("SELECT * FROM items WHERE id = ?");
+		
+		statement.setLong(1, id);
+		ResultSet resultSet = statement.executeQuery();
+		resultSet.next();
+		return modelFromResultSet(resultSet);
+		
+		
 		} catch(SQLException e) {
+			
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+			
 			
 		}
 				
@@ -53,11 +66,16 @@ public class ItemDAO implements Dao<Item> {
 	}
 
 	@Override
-	public Item create(Item t) {
+	public Item create(Item item) {
 		// TODO Auto-generated method stub
 		
 		try {Connection connection = DBUtils.getInstance().getConnection();
-			
+			PreparedStatement statement = connection.prepareStatement("INSERT INTO items(itemName,itemId,value) VALUES (?,?,?)");
+			statement.setString(1, item.getItemName());
+			statement.setLong(2, item.getItemId());
+			statement.setLong(3, item.getValue());
+			statement.executeUpdate();
+			return null; // insert added item
 		}catch(SQLException e) {
 			
 		}
