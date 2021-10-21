@@ -1,5 +1,7 @@
 package com.qa.ims.controller;
 
-public class ItemController {
+import com.qa.ims.persistence.domain.Item;
+
+public class ItemController implements CrudController<Item>{
 
 }
