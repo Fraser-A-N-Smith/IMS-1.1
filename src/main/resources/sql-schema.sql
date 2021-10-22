@@ -1,12 +1,30 @@
-drop schema ims;
+CREATE DATABASE IF NOT EXISTS IMSproject ;
 
-CREATE SCHEMA IF NOT EXISTS `ims`;
+USE IMSproject;
 
-USE `ims` ;
+CREATE TABLE IF NOT EXISTS customers(
+id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+first_name VARCHAR(25),
+surname VARCHAR(25));
 
-CREATE TABLE IF NOT EXISTS `ims`.`customers` (
-    `id` INT(11) NOT NULL AUTO_INCREMENT,
-    `first_name` VARCHAR(40) DEFAULT NULL,
-    `surname` VARCHAR(40) DEFAULT NULL,
-    PRIMARY KEY (`id`)
+CREATE TABLE IF NOT EXISTS items(
+itemId INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+itemName VARCHAR(50),
+value INT);
+
+CREATE TABLE IF NOT EXISTS orders(
+orderId INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+items VARCHAR(255),
+customer INT,
+FOREIGN KEY (customer) REFERENCES customers(id)
 );
+
+CREATE TABLE IF NOT EXISTS orderItems(
+customer VARCHAR(255),
+orderItemsId INT NOT NULL,
+customerid INT,
+FOREIGN KEY (customerid) REFERENCES customers(id),
+FOREIGN KEY (orderItemsId) REFERENCES items(itemId));
+
+
+
