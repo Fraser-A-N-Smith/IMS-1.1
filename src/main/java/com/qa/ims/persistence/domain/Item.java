@@ -14,6 +14,14 @@ public class Item {
 		this.itemName = itemName;
 		this.value = value;
 	}
+	
+
+	public Item(String itemName, long value) {
+		super();
+		this.itemName = itemName;
+		this.value = value;
+	}
+
 
 	public long getItemId() {
 		return itemId;

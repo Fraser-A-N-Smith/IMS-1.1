@@ -1,5 +1,5 @@
 package com.qa.ims.controller;
 
-public class OrderController {
+public class OrderController implements CrudController<Order>{
 
 }
