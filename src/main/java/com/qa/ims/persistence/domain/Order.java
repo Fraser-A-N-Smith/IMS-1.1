@@ -22,6 +22,25 @@ public class Order {
 		this.customerId = customerId;
 		this.items = (ArrayList<Item>) items;
 	}
+	
+	public ArrayList<Item> createList(Item item){
+		
+		ArrayList<Item> orderList = new ArrayList<>();
+		orderList.add(item);
+		
+		return orderList;
+		
+	}
+	
+	public ArrayList<Item> addToOrder(Item item, ArrayList<Item> lst){
+		
+		lst.add(item);
+
+		return lst;
+	}
+	public Long calcCost() {
+		return null;
+	}
 
 	public int getCustomerId() {
 		return customerId;
@@ -39,8 +58,10 @@ public class Order {
 		this.customerId = customerId;
 	}
 
+	
+
 	public ArrayList<Item> getItems() {
-		return items;
+		return this.items;
 	}
 
 	public void setItems(ArrayList<Item> items) {

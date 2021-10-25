@@ -2,6 +2,12 @@ CREATE DATABASE IF NOT EXISTS IMSproject ;
 
 USE IMSproject;
 
+DROP TABLE IF EXISTS orderitems;
+DROP TABLE orders;
+DROP TABLE customers;
+DROP TABLE items;
+
+
 CREATE TABLE IF NOT EXISTS customers(
 id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
 first_name VARCHAR(25),
@@ -20,11 +26,15 @@ FOREIGN KEY (customer) REFERENCES customers(id)
 );
 
 CREATE TABLE IF NOT EXISTS orderItems(
-customer VARCHAR(255),
 orderItemsId INT NOT NULL,
+orderId INT,
 customerid INT,
-FOREIGN KEY (customerid) REFERENCES customers(id),
-FOREIGN KEY (orderItemsId) REFERENCES items(itemId));
+PRIMARY KEY (orderItemsId))
+/*FOREIGN KEY (orderId) REFERENCES orders(orderId),
+FOREIGN KEY (customerid) REFERENCES customers(id))*/
+
+
+
 
 
 
