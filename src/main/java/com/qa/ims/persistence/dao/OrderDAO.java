@@ -76,7 +76,7 @@ public class OrderDAO implements Dao<Order> {
 	public Order update(Order order) {
 		try {Connection connection = DBUtils.getInstance().getConnection();
 		PreparedStatement statement = connection
-				.prepareStatement("UPDATE customers SET orderId = ?, items = ?, customerId = ? WHERE id = ?");
+				.prepareStatement("UPDATE orders SET orderId = ?, items = ?, customerId = ? WHERE orderId = ?");
 		statement.setInt(1, order.getOrderId());
 		statement.setArray(2, (Array) order.getItems());
 		statement.setInt(3, order.getCustomerId());
@@ -93,7 +93,14 @@ public class OrderDAO implements Dao<Order> {
 
 	@Override
 	public int delete(long id) {
-		// TODO Auto-generated method stub
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection.prepareStatement("DELETE FROM orders WHERE orderId = ?");) {
+			statement.setLong(1, id);
+			return statement.executeUpdate();
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
 		return 0;
 	}
 
