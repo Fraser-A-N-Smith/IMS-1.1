@@ -56,9 +56,27 @@ public class OrderDAO implements Dao<Order> {
 
 	@Override
 	public Order create(Order order) {
+		try {
+			Connection connection = DBUtils.getInstance().getConnection();
+			PreparedStatement statement = connection
+					.prepareStatement("INSERT INTO orders (orderId,items,customerId) VALUES (?,?,?)");
+			statement.setInt(1, order.getOrderId());
+			statement.setArray(2, (Array) order.getItems());
+			statement.setInt(3, order.getCustomerId());
+
+		} catch (SQLException e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+
+		}
+		return null;
+	}
+
+	@Override
+	public Order update(Order order) {
 		try {Connection connection = DBUtils.getInstance().getConnection();
 		PreparedStatement statement = connection
-				.prepareStatement("INSERT INTO orders (orderId,items,customerId) VALUES (?,?,?)");
+				.prepareStatement("UPDATE customers SET orderId = ?, items = ?, customerId = ? WHERE id = ?");
 		statement.setInt(1, order.getOrderId());
 		statement.setArray(2, (Array) order.getItems());
 		statement.setInt(3, order.getCustomerId());
@@ -69,12 +87,7 @@ public class OrderDAO implements Dao<Order> {
 			LOGGER.error(e.getMessage());
 			
 		}
-		return null;
-	}
-
-	@Override
-	public Order update(Order t) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
