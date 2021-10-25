@@ -1,5 +1,6 @@
 package com.qa.ims.persistence.dao;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +12,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.utils.DBUtils;
 
@@ -53,8 +55,20 @@ public class OrderDAO implements Dao<Order> {
 	}
 
 	@Override
-	public Order create(Order t) {
-		// TODO Auto-generated method stub
+	public Order create(Order order) {
+		try {Connection connection = DBUtils.getInstance().getConnection();
+		PreparedStatement statement = connection
+				.prepareStatement("INSERT INTO orders (orderId,items,customerId) VALUES (?,?,?)");
+		statement.setInt(1, order.getOrderId());
+		statement.setArray(2, (Array) order.getItems());
+		statement.setInt(3, order.getCustomerId());
+		
+			
+		}catch(SQLException e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+			
+		}
 		return null;
 	}
 
@@ -72,8 +86,10 @@ public class OrderDAO implements Dao<Order> {
 
 	@Override
 	public Order modelFromResultSet(ResultSet resultSet) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		int orderId = resultSet.getInt("id");
+		int customerId = resultSet.getInt("customerId");
+		List<Item> items = (List<Item>) resultSet.getArray(null);
+		return new Order(orderId, customerId, items);
 	}
 
 }
