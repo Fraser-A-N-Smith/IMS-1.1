@@ -60,9 +60,9 @@ public class OrderController implements CrudController<Order> {
 	}
 	
 	public void addToOrder() {
-		LOGGER.info("Please enter the id of the order you would like to ammend:");
+		LOGGER.info("Please enter the id of the item you would like to add:");
 		Long orderId = utils.getLong();
-		LOGGER.info("Please enter the id of the item you would like to add");
+		LOGGER.info("Please enter the id of the order you would like to ammend");
 		Long itemId = utils.getLong();
 		LOGGER.info("Please enter how many of the item you would like to add");
 		int numberOf = Math.toIntExact(utils.getLong());
@@ -72,9 +72,9 @@ public class OrderController implements CrudController<Order> {
 		
 	}
 	public void delFromOrder() {
-		LOGGER.info("Please enter the id of the order you would like to ammend:");
+		LOGGER.info("Please enter the id of the item you would like to remove:");
 		Long orderId = utils.getLong();
-		LOGGER.info("Please enter the id of the item you would like to add");
+		LOGGER.info("Please enter the id of the order you would like to ammend");
 		Long itemId = utils.getLong();
 		orderDAO.removeFromOrder(new OrderItems(itemId,orderId));
 		

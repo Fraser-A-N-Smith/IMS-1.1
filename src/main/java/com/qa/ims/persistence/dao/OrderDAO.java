@@ -122,5 +122,23 @@ public class OrderDAO implements Dao<Order> {
 		}
 		return 0;
 	}
+	
+
+	public int removeFromOrder(OrderItems orderItems) {
+		try {
+		Connection connection = DBUtils.getInstance().getConnection();
+		PreparedStatement statement = connection
+				.prepareStatement("DELETE FROM orderItems WHERE orderId = ? AND ItemsId = ?");
+		statement.setLong(1, orderItems.getItemId());
+		statement.setLong(2, orderItems.getOrderId());
+		return statement.executeUpdate();
+		}catch(SQLException e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+			
+		}
+		return 0;
+		
+	}
 
 }

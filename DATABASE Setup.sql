@@ -37,6 +37,10 @@ SELECT * FROM items;
 SELECT * FROM orderitems;
 
 
+/* testing the syntax of queries*/
+/*UPDATE  orders SET totalValue = totalValue + ? WHERE orderId = ?;*/
+
+
 
 
 

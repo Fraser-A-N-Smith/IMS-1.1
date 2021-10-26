@@ -105,6 +105,11 @@ public class IMS {
 			break;
 		case ADDITEM:
 			orderc.addToOrder();
+			break;
+		case DELETEITEM:
+			LOGGER.info("Using this method will delete all instances of an item from your order!");
+			orderc.delFromOrder();
+			break;
 		default:
 			break;
 		}
