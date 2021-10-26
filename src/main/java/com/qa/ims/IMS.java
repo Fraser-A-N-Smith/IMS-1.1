@@ -72,19 +72,22 @@ public class IMS {
 			}
 
 			LOGGER.info(() ->"What would you like to do with " + domain.name().toLowerCase() + ":");
-
-			Action.printActions();
+			
+			if (domain.name() == "ORDER") {
+				Action.printActions2();
+			}else {
+			Action.printActions();}
 			Action action = Action.getAction(utils);
 
 			if (action == Action.RETURN) {
 				changeDomain = true;
 			} else {
-				doAction(active, action);
+				doAction(active, action, orders);
 			}
 		} while (!changeDomain);
 	}
 
-	public void doAction(CrudController<?> crudController, Action action) {
+	public void doAction(CrudController<?> crudController, Action action,OrderController orderc) {
 		switch (action) {
 		case CREATE:
 			crudController.create();
@@ -100,6 +103,8 @@ public class IMS {
 			break;
 		case RETURN:
 			break;
+		case ADDITEM:
+			orderc.addToOrder();
 		default:
 			break;
 		}

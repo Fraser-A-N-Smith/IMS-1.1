@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.persistence.dao.OrderDAO;
 import com.qa.ims.persistence.domain.Order;
+import com.qa.ims.persistence.domain.OrderItems;
 import com.qa.ims.utils.Utils;
 
 public class OrderController implements CrudController<Order> {
@@ -34,11 +35,9 @@ public class OrderController implements CrudController<Order> {
 
 	@Override
 	public Order create() {
-		LOGGER.info("Please enter an order id:");
-		Long orderId = utils.getLong();
 		LOGGER.info("Please enter a customer Id");
 		Long customerId = utils.getLong();
-		Order order = orderDAO.create(new Order(orderId, customerId));
+		Order order = orderDAO.create(new Order(customerId));
 		return order;
 	}
 
@@ -59,5 +58,28 @@ public class OrderController implements CrudController<Order> {
 		Long id = utils.getLong();
 		return orderDAO.delete(id);
 	}
+	
+	public void addToOrder() {
+		LOGGER.info("Please enter the id of the order you would like to ammend:");
+		Long orderId = utils.getLong();
+		LOGGER.info("Please enter the id of the item you would like to add");
+		Long itemId = utils.getLong();
+		LOGGER.info("Please enter how many of the item you would like to add");
+		int numberOf = Math.toIntExact(utils.getLong());
+		for (int i = 0; i<numberOf;i++) {
+			orderDAO.addToOrder(new OrderItems(orderId,itemId));
+		}
+		
+	}
+	public void delFromOrder() {
+		LOGGER.info("Please enter the id of the order you would like to ammend:");
+		Long orderId = utils.getLong();
+		LOGGER.info("Please enter the id of the item you would like to add");
+		Long itemId = utils.getLong();
+		orderDAO.removeFromOrder(new OrderItems(itemId,orderId));
+		
+	}
+	
+	
 
 }

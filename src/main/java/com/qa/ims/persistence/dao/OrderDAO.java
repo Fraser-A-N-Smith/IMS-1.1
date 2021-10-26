@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.persistence.domain.Order;
+import com.qa.ims.persistence.domain.OrderItems;
 import com.qa.ims.utils.DBUtils;
 
 public class OrderDAO implements Dao<Order> {
@@ -52,14 +53,11 @@ public class OrderDAO implements Dao<Order> {
 		return null;
 	}
 
-
-
 	public Order create(Order order) {
 		try {
 			Connection connection = DBUtils.getInstance().getConnection();
-			PreparedStatement statement = connection
-					.prepareStatement("INSERT INTO orders (customerId) VALUES (?)");
-			
+			PreparedStatement statement = connection.prepareStatement("INSERT INTO orders (customerId) VALUES (?)");
+
 			statement.setFloat(1, order.getCustomerId());
 			statement.executeUpdate();
 			return order;
@@ -70,7 +68,7 @@ public class OrderDAO implements Dao<Order> {
 		}
 		return null;
 	}
-	
+
 	@Override
 	public Order update(Order order) {
 		try {
@@ -79,6 +77,7 @@ public class OrderDAO implements Dao<Order> {
 					.prepareStatement("UPDATE orders SET customerId = ? WHERE orderId = ?");
 			statement.setFloat(2, order.getOrderId());
 			statement.setFloat(1, order.getCustomerId());
+			statement.executeUpdate();
 
 		} catch (SQLException e) {
 			LOGGER.debug(e);
@@ -107,6 +106,21 @@ public class OrderDAO implements Dao<Order> {
 		Long orderId = resultSet.getLong("orderId");
 		Long customerId = resultSet.getLong("customerId");
 		return new Order(orderId, customerId);
+	}
+
+	public int addToOrder(OrderItems orderItem) {
+		try {
+			Connection connection = DBUtils.getInstance().getConnection();
+			PreparedStatement statement = connection
+					.prepareStatement("INSERT INTO orderItems (ItemsId,orderId) VALUES (?,?)");
+			statement.setLong(1, orderItem.getItemId());
+			statement.setLong(2, orderItem.getOrderId());
+			return statement.executeUpdate();
+		} catch (SQLException e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		return 0;
 	}
 
 }

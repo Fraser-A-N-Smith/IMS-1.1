@@ -25,12 +25,11 @@ FOREIGN KEY (customerId) REFERENCES customers(id)
 );
 
 CREATE TABLE IF NOT EXISTS orderItems(
-orderItemsId INT AUTO_INCREMENT NOT NULL,
-orderId INT,
-customerid INT,
-PRIMARY KEY (orderItemsId),
-FOREIGN KEY (orderId) REFERENCES orders(orderId),
-FOREIGN KEY (customerId) REFERENCES customers(id));
+orderItemId INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+ItemsId INT NOT NULL,
+orderId INT NOT NULL,
+FOREIGN KEY (orderId) REFERENCES orders(orderId));
+
 
 SELECT * FROM orders;
 SELECT * FROM customers;
