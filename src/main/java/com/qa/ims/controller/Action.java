@@ -14,7 +14,7 @@ public enum Action {
 	CREATE("To save a new entity into the database"), READ("To read an entity from the database"),
 	UPDATE("To change an entity already in the database"), DELETE("To remove an entity from the database"),
 	RETURN("To return to domain selection"), ADDITEM("To add an item to an order"),
-	DELETEITEM("To delete an item from an order");
+	DELETEITEM("To delete an item from an order"), CALCULATECOST("Calculates the cost of your order");
 
 	public static final Logger LOGGER = LogManager.getLogger();
 
@@ -32,7 +32,7 @@ public enum Action {
 	}
 
 	public static void printActions() {
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 6; i++) {
 			Action actions = Action.values()[i];
 			LOGGER.info(actions.getDescription());
 		}

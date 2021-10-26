@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS orderItems(
 orderItemId INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
 ItemsId INT NOT NULL,
 orderId INT NOT NULL,
+FOREIGN KEY (ItemsId) REFERENCES items(itemId),
 FOREIGN KEY (orderId) REFERENCES orders(orderId));
 
 
@@ -40,8 +41,9 @@ SELECT * FROM orderitems;
 /* testing the syntax of queries*/
 /*UPDATE  orders SET totalValue = totalValue + ? WHERE orderId = ?;*/
 
+/*SELECT * FROM  orderitems JOIN items ON orderitems.ItemsId = items.itemId JOIN orders ON */
 
-
+SELECT COUNT(*) AS count_items FROM orderitems WHERE orderId = ?;
 
 
 

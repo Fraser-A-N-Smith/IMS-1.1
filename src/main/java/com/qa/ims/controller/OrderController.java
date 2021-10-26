@@ -40,6 +40,7 @@ public class OrderController implements CrudController<Order> {
 		Order order = orderDAO.create(new Order(customerId));
 		return order;
 	}
+	
 
 	@Override
 	public Order update() {
@@ -68,9 +69,18 @@ public class OrderController implements CrudController<Order> {
 		int numberOf = Math.toIntExact(utils.getLong());
 		for (int i = 0; i<numberOf;i++) {
 			orderDAO.addToOrder(new OrderItems(orderId,itemId));
+			//add cost
 		}
 		
 	}
+	
+	public void calcValue() {
+		LOGGER.info("Please give the Id of the order that you wish to calculate");
+		Long orderId = utils.getLong();
+		int cost = orderDAO.calcCosts(orderId);
+		LOGGER.info("The cost of your order is: "+cost);
+	}
+	
 	public void delFromOrder() {
 		LOGGER.info("Please enter the id of the item you would like to remove:");
 		Long orderId = utils.getLong();

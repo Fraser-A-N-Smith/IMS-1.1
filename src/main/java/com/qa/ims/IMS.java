@@ -110,6 +110,9 @@ public class IMS {
 			LOGGER.info("Using this method will delete all instances of an item from your order!");
 			orderc.delFromOrder();
 			break;
+		case CALCULATECOST:
+			orderc.calcValue();
+			break;
 		default:
 			break;
 		}
