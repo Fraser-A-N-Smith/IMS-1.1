@@ -139,21 +139,41 @@ public class OrderDAO implements Dao<Order> {
 	public int calcCosts(Long num) {
 		// use (SELECT COUNT(*) AS count_items FROM orderitems WHERE orderId = ?;)
 		try {
+			////////////// Find Number of items
+//			Connection connection = DBUtils.getInstance().getConnection();
+//			PreparedStatement statement = connection
+//					.prepareStatement("SELECT COUNT(*) AS count_items FROM orderitems WHERE orderId = ?;");
+//			statement.setLong(1, num);
+//
+//			ResultSet resultSet = statement.executeQuery();
+//			resultSet.next();
+//			int ItemNumber = resultSet.getInt("count_items");
+//			/////////// 
+//			Connection connection1 = DBUtils.getInstance().getConnection();
+//			PreparedStatement statement1 = connection1
+//					.prepareStatement("SELECT value FROM items JOIN orderitems ON items.itemId = orderitems.itemsId WHERE orderId = ?;");
+//			statement1.setLong(1, num);
+//			
+//			int cost = 0;
+//			ResultSet costSet = statement.executeQuery();
+//			while(costSet.next()) {
+//				int temp = costSet.getInt("value");
+//				cost = cost + temp;
+//			}
+//			
+//			int ItemPrice = ItemNumber*399;
+//			
 			Connection connection = DBUtils.getInstance().getConnection();
 			PreparedStatement statement = connection
-					.prepareStatement("SELECT COUNT(*) AS count_items FROM orderitems WHERE orderId = ?;");
+					.prepareStatement("SELECT SUM(value) AS total FROM items JOIN orderItems AS oI ON items.itemId = oI.itemsId WHERE orderId =  ?;");
 			statement.setLong(1, num);
 
 			ResultSet resultSet = statement.executeQuery();
 			resultSet.next();
-			int ItemNumber = resultSet.getInt("count_items");
-			
-			int ItemPrice = ItemNumber*399;
-			
-			return ItemPrice;
-			
-			
-			
+			int ItemNumber = resultSet.getInt("total");
+
+			return ItemNumber;// ItemPrice;
+
 		} catch (SQLException e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());

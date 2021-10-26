@@ -43,8 +43,9 @@ SELECT * FROM orderitems;
 
 /*SELECT * FROM  orderitems JOIN items ON orderitems.ItemsId = items.itemId JOIN orders ON */
 
-SELECT COUNT(*) AS count_items FROM orderitems WHERE orderId = ?;
-
+/*SELECT value FROM items JOIN orderitems ON items.itemId = orderitems.itemsId WHERE orderId = 1;
+*/
+SELECT SUM(value) AS total FROM items JOIN orderItems AS oI ON items.itemId = oI.itemsId WHERE orderId = ?;
 
 
 
