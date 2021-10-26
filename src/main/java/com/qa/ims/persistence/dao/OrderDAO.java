@@ -1,6 +1,5 @@
 package com.qa.ims.persistence.dao;
 
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +11,6 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.utils.DBUtils;
 
@@ -54,34 +52,16 @@ public class OrderDAO implements Dao<Order> {
 		return null;
 	}
 
-	
-//	public Order create(Order order, int itemId,String itemName, Long itemValue) {
-//		try {
-//			Connection connection = DBUtils.getInstance().getConnection();
-//			PreparedStatement statement = connection
-//					.prepareStatement("INSERT INTO orders (orderId,items,customerId) VALUES (?,?,?)");
-//			statement.setInt(1, order.getOrderId());
-//			statement.setArray(2, (Array) order.getItems(new Item(itemId, itemName, itemValue)));
-//			statement.setInt(3, order.getCustomerId());
-//			
-//			return order;
-//		} catch (SQLException e) {
-//			LOGGER.debug(e);
-//			LOGGER.error(e.getMessage());
-//
-//		}
-//		return null;
-//	}
+
 
 	public Order create(Order order) {
 		try {
 			Connection connection = DBUtils.getInstance().getConnection();
 			PreparedStatement statement = connection
-					.prepareStatement("INSERT INTO orders (orderId,items,customerId) VALUES (?,?,?)");
-			statement.setInt(1, order.getOrderId());
-			statement.setArray(2, (Array) order.getItems());
-			statement.setInt(3, order.getCustomerId());
+					.prepareStatement("INSERT INTO orders (customerId) VALUES (?)");
 			
+			statement.setFloat(1, order.getCustomerId());
+			statement.executeUpdate();
 			return order;
 		} catch (SQLException e) {
 			LOGGER.debug(e);
@@ -91,30 +71,14 @@ public class OrderDAO implements Dao<Order> {
 		return null;
 	}
 	
-	public Order addTo(Order order) {
-
-		try {
-			Connection connection = DBUtils.getInstance().getConnection();
-			 PreparedStatement statement = connection.prepareStatement("UPDATE orders SET items = ? WHERE orderId = ?");
-			 statement.setArray(1, null);
-		} catch (SQLException e) {
-			LOGGER.debug(e);
-			LOGGER.error(e.getMessage());
-
-		}
-
-		return null;
-	}
-
 	@Override
 	public Order update(Order order) {
 		try {
 			Connection connection = DBUtils.getInstance().getConnection();
 			PreparedStatement statement = connection
-					.prepareStatement("UPDATE orders SET orderId = ?, items = ?, customerId = ? WHERE orderId = ?");
-			statement.setInt(1, order.getOrderId());
-			statement.setArray(2, (Array) order.getItems());
-			statement.setInt(3, order.getCustomerId());
+					.prepareStatement("UPDATE orders SET customerId = ? WHERE orderId = ?");
+			statement.setFloat(2, order.getOrderId());
+			statement.setFloat(1, order.getCustomerId());
 
 		} catch (SQLException e) {
 			LOGGER.debug(e);
@@ -140,10 +104,9 @@ public class OrderDAO implements Dao<Order> {
 
 	@Override
 	public Order modelFromResultSet(ResultSet resultSet) throws SQLException {
-		int orderId = resultSet.getInt("id");
-		int customerId = resultSet.getInt("customerId");
-		List<Item> items = (List<Item>) resultSet.getArray(null);
-		return new Order(orderId, customerId, items);
+		Long orderId = resultSet.getLong("orderId");
+		Long customerId = resultSet.getLong("customerId");
+		return new Order(orderId, customerId);
 	}
 
 }

@@ -1,28 +1,23 @@
 package com.qa.ims.persistence.domain;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class Order {
 
-	private int orderId;
-	private int customerId;
-	private ArrayList<Item> items;
+	private Long orderId;
+	private Long customerId;
 
-	public Order(int customerId, ArrayList<Item> items) {
-		super();
-		this.customerId = customerId;
-		this.items = items;
-	}
 
-	public Order(int orderId, int customerId, List<Item> items) {
+	
+	
+	
+	public Order(Long orderId, Long customerId) {
 		super();
 		this.orderId = orderId;
 		this.customerId = customerId;
-		this.items = (ArrayList<Item>) items;
 	}
-	
+
 	public ArrayList<Item> createList(Item item){
 		
 		ArrayList<Item> orderList = new ArrayList<>();
@@ -32,50 +27,26 @@ public class Order {
 		
 	}
 	
-	public ArrayList<Item> addToOrder(Item item, ArrayList<Item> lst){
-		
-		lst.add(item);
 
-		return lst;
-	}
-	public Long calcCost() {
-		return null;
-	}
-
-	public int getCustomerId() {
+	public Long getCustomerId() {
 		return customerId;
 	}
 
-	public int getOrderId() {
+	public Long getOrderId() {
 		return orderId;
 	}
 
-	public void setOrderId(int orderId) {
+	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
 	}
 
-	public void setCustomerId(int customerId) {
+	public void setCustomerId(Long customerId) {
 		this.customerId = customerId;
-	}
-
-	
-
-	public ArrayList<Item> getItems() {
-		return this.items;
-	}
-
-	public void setItems(ArrayList<Item> items) {
-		this.items = items;
-	}
-
-	@Override
-	public String toString() {
-		return "Order [orderId=" + orderId + ", customerId=" + customerId + ", items=" + items + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(customerId, items, orderId);
+		return Objects.hash(customerId, orderId);
 	}
 
 	@Override
@@ -87,7 +58,16 @@ public class Order {
 		if (getClass() != obj.getClass())
 			return false;
 		Order other = (Order) obj;
-		return customerId == other.customerId && Objects.equals(items, other.items) && orderId == other.orderId;
+		return Objects.equals(customerId, other.customerId) && Objects.equals(orderId, other.orderId);
 	}
+
+	@Override
+	public String toString() {
+		return "Order [orderId=" + orderId + ", customerId=" + customerId + "]";
+	}
+
+	
+
+
 
 }
