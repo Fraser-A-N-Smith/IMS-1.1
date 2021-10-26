@@ -5,39 +5,53 @@ import java.util.Objects;
 
 public class Order {
 
-	private int customerId;
-	private ArrayList<Item> items;
+	private Long orderId;
+	private Long customerId;
+	
 
-	public Order(int customerId, ArrayList<Item> items) {
+	
+	
+	
+	public Order(Long customerId) {
 		super();
 		this.customerId = customerId;
-		this.items = items;
 	}
 
-	public int getCustomerId() {
+	public Order(Long orderId, Long customerId) {
+		super();
+		this.orderId = orderId;
+		this.customerId = customerId;
+	}
+
+	public ArrayList<Item> createList(Item item){
+		
+		ArrayList<Item> orderList = new ArrayList<>();
+		orderList.add(item);
+		
+		return orderList;
+		
+	}
+	
+
+	public Long getCustomerId() {
 		return customerId;
 	}
 
-	public void setCustomerId(int customerId) {
+	public Long getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
+	}
+
+	public void setCustomerId(Long customerId) {
 		this.customerId = customerId;
-	}
-
-	public ArrayList<Item> getItems() {
-		return items;
-	}
-
-	public void setItems(ArrayList<Item> items) {
-		this.items = items;
-	}
-
-	@Override
-	public String toString() {
-		return "Order [customerId=" + customerId + ", items=" + items + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(customerId, items);
+		return Objects.hash(customerId, orderId);
 	}
 
 	@Override
@@ -49,7 +63,16 @@ public class Order {
 		if (getClass() != obj.getClass())
 			return false;
 		Order other = (Order) obj;
-		return customerId == other.customerId && Objects.equals(items, other.items);
+		return Objects.equals(customerId, other.customerId) && Objects.equals(orderId, other.orderId);
 	}
+
+	@Override
+	public String toString() {
+		return "Order [orderId=" + orderId + ", customerId=" + customerId + "]";
+	}
+
+	
+
+
 
 }
