@@ -33,4 +33,17 @@ public class OrderTest {
 	String expected = "Order [orderId=" + 1 + ", customerId=" + 1 + "]";
 	assertEquals(testString, expected);
 }
+	@Test
+	public void setOrderId() {
+		Long newId = 4l;
+		testOdr.setOrderId(newId);
+		
+		assertEquals(newId, testOdr.getOrderId());
+	}
+	@Test 
+	public void setCustomerIdTest() {
+		Long newId = 4l;
+		testOdr.setCustomerId(newId);
+		assertEquals(newId, testOdr.getCustomerId());
+	}
 }

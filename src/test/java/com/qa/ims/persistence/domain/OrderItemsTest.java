@@ -30,6 +30,19 @@ public class OrderItemsTest {
 		oI = new OrderItems(1l, 1l);
 		assertEquals(oITest.getItemId(), oI.getItemId());
 	}
+
+//	@Test 
+//	public void getCustomerId() {
+//		oI = new OrderItems(1l,1l);
+//		assertEquals(oITest.getOrderId(), 0);
+		
+//	}
+//	@Test 
+//	public void setItemIdTest() {
+//		oI = new OrderItems(1l, 1l);
+//		oI.setItemId(null);
+//		assertEquals(oITest.getItemId(), null);
+//	}
 	
 //	@Test
 //	public void setItemIdTest() {

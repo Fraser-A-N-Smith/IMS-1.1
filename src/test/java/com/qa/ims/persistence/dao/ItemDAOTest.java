@@ -35,6 +35,11 @@ public class ItemDAOTest {
 		assertEquals(expected, DAO.readAll());
 	}
 
+//	@Test
+//	public void testReadAllEx() {
+//		List<Item> expected = new ArrayList<>();
+//		expected.add(new Item(1,"IPad", 299));
+//		assertEquals(expected, DAO.readAll());}
 
 	
 	@Test
@@ -60,6 +65,12 @@ public class ItemDAOTest {
 	@Test
 	public void testRead() {
 		final long ID = 1L;
+		assertEquals(new Item(ID, "IPad", 299), DAO.read(ID));
+	}
+	
+	@Test
+	public void testReadEx() {
+		final long ID = -4567658l;
 		assertEquals(new Item(ID, "IPad", 299), DAO.read(ID));
 	}
 }

@@ -26,13 +26,29 @@ public class CustomerDAOTest {
 		final Customer created = new Customer(2L, "chris", "perrins");
 		assertEquals(created, DAO.create(created));
 	}
-
+	@Test
+	public void testCreateEx() {
+		final Customer created = new Customer(2L, "chrisaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "perrins");
+		assertEquals(null, DAO.create(created));
+		
+	}
+	
+//	@Test
+//	public void testReadAllEx() {
+//		List<Customer> expected = new ArrayList<>();
+//		//expected.add(new Customer(1L, "jordanaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "harrison"));
+//		DAO.delete(1);
+//		assertEquals(null, DAO.readAll());
+//	}
+//	
 	@Test
 	public void testReadAll() {
 		List<Customer> expected = new ArrayList<>();
 		expected.add(new Customer(1L, "jordan", "harrison"));
 		assertEquals(expected, DAO.readAll());
 	}
+	
+
 
 	@Test
 	public void testReadLatest() {
