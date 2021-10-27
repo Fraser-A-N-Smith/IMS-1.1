@@ -78,10 +78,10 @@ public class ItemDAO implements Dao<Item> {
 		try {
 			Connection connection = DBUtils.getInstance().getConnection();
 			PreparedStatement statement = connection
-					.prepareStatement("INSERT INTO items(itemName,itemId,value) VALUES (?,?,?)");
+					.prepareStatement("INSERT INTO items(itemName,value) VALUES (?,?)");
 			statement.setString(1, item.getItemName());
-			statement.setLong(2, item.getItemId());
-			statement.setLong(3, item.getValue());
+			//statement.setLong(2, item.getItemId());
+			statement.setLong(2, item.getValue());
 			statement.executeUpdate();
 			return item; // insert added item
 		} catch (SQLException e) {
