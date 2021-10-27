@@ -52,10 +52,17 @@ public class Item {
 		return "Item [itemId=" + itemId + ", itemName=" + itemName + ", value=" + value + "]";
 	}
 
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(itemId, itemName, value);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (itemId ^ (itemId >>> 32));
+		result = prime * result + ((itemName == null) ? 0 : itemName.hashCode());
+		result = prime * result + (int) (value ^ (value >>> 32));
+		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -66,7 +73,18 @@ public class Item {
 		if (getClass() != obj.getClass())
 			return false;
 		Item other = (Item) obj;
-		return itemId == other.itemId && Objects.equals(itemName, other.itemName) && value == other.value;
+		if (itemId != other.itemId)
+			return false;
+		if (itemName == null) {
+			if (other.itemName != null)
+				return false;
+		} else if (!itemName.equals(other.itemName))
+			return false;
+		if (value != other.value)
+			return false;
+		return true;
 	}
+
+
 
 }
