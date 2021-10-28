@@ -23,6 +23,13 @@ public class Item {
 	}
 
 
+//	public Item(String itemName2, Double itemValue) {
+//		this.itemName = itemName2;
+//		this.value = itemValue;
+//		// TODO Auto-generated constructor stub
+//	}
+
+
 	public long getItemId() {
 		return itemId;
 	}

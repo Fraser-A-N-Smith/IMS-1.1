@@ -67,9 +67,9 @@ public class ItemControllerTest {
 	public void testUpdate() {
 		Item updated = new Item(1L, "IPad2", 599L);
 
-		Mockito.when(this.utils.getLong()).thenReturn(1l);
+		Mockito.when(this.utils.getLong()).thenReturn(1l,updated.getValue());
 		Mockito.when(this.utils.getString()).thenReturn(updated.getItemName());
-		Mockito.when(this.utils.getLong()).thenReturn(updated.getValue());
+		//Mockito.when(this.utils.getLong()).thenReturn(updated.getValue());
 		Mockito.when(this.dao.update(updated)).thenReturn(updated);
 		
 		
