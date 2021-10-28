@@ -54,7 +54,7 @@ public class ItemDAO implements Dao<Item> {
 	public Item read(Long id) {
 		try {
 			Connection connection = DBUtils.getInstance().getConnection();
-			PreparedStatement statement = connection.prepareStatement("SELECT * FROM items WHERE id = ?");
+			PreparedStatement statement = connection.prepareStatement("SELECT * FROM items WHERE itemId = ?;");
 
 			statement.setLong(1, id);
 			ResultSet resultSet = statement.executeQuery();
@@ -78,10 +78,10 @@ public class ItemDAO implements Dao<Item> {
 		try {
 			Connection connection = DBUtils.getInstance().getConnection();
 			PreparedStatement statement = connection
-					.prepareStatement("INSERT INTO items(itemName,itemId,value) VALUES (?,?,?)");
+					.prepareStatement("INSERT INTO items(itemName,value) VALUES (?,?)");
 			statement.setString(1, item.getItemName());
-			statement.setLong(2, item.getItemId());
-			statement.setLong(3, item.getValue());
+			//statement.setLong(2, item.getItemId());
+			statement.setLong(2, item.getValue());
 			statement.executeUpdate();
 			return item; // insert added item
 		} catch (SQLException e) {

@@ -90,6 +90,7 @@ public class OrderDAO implements Dao<Order> {
 			statement.setFloat(2, order.getOrderId());
 			statement.setFloat(1, order.getCustomerId());
 			statement.executeUpdate();
+			return read(order.getOrderId());
 
 		} catch (SQLException e) {
 			LOGGER.debug(e);
