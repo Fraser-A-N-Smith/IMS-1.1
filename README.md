@@ -1,7 +1,9 @@
-Coverage: 34%
+Coverage: 70%
 # Project Title
 
-One Paragraph of project description goes here
+Inventory Management System. 
+
+The system is accessed through the terminal and allows for the addition and subtraction of custoomers, items, and orders. It also allows for the update of any of the three and the addition of a number of items to an order.
 
 ## Getting Started
 
@@ -9,10 +11,16 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Java compatible operating system
+2GB RAM
+Java 11
+
 
 ```
-Give examples
+System was successfully run on:
+ERAZER DEPUTY P10
+Intel I7
+RTX 2060
 ```
 
 ### Installing
@@ -75,6 +83,7 @@ We use [SemVer](http://semver.org/) for versioning.
 ## Authors
 
 * **Chris Perrins** - *Initial work* - [christophperrins](https://github.com/christophperrins)
+* Fraser Smith - Final work - https://github.com/Fraser-A-N-Smith/
 
 ## License
 
@@ -84,6 +93,3 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
