@@ -1,68 +1,47 @@
-Coverage: 34%
-# Project Title
+Coverage: 75.3%
+# IMS Project
 
-One Paragraph of project description goes here
-
+Creation of an inverntory management system to process and handle people, items, and orders.
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+In the target folder, run the ims-0.0.1-jar-with-dependencies in the command line.
 
 ### Prerequisites
 
 What things you need to install the software and how to install them
 
+Java 11
+A Java Capable Operating System
+4GB RAM
 ```
-Give examples
+Project was run on:
+
+ERAZER DEPUTY P10
+4GB RAM
+Intel I7
+RTX2060
 ```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+Access the target folder, run command line, then run the following command:
 
 ```
-Give the example
+Java -jar ims-0.0.1-jar-with-dependencies
 ```
 
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
-Explain how to run the automated tests for this system. Break down into which tests and what they do
-
-### Unit Tests 
-
-Explain what these tests test, why and how to run them
-
-```
-Give an example
-```
-
-### Integration Tests 
-Explain what these tests test, why and how to run them
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
+Tests are already set up. Access the main code with Eclipse and run coverage over the whole project to run tests.
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+Access the target folder, run command line, then run the following command:
+
+```
+Java -jar ims-0.0.1-jar-with-dependencies
+```
 
 ## Built With
 
@@ -75,6 +54,7 @@ We use [SemVer](http://semver.org/) for versioning.
 ## Authors
 
 * **Chris Perrins** - *Initial work* - [christophperrins](https://github.com/christophperrins)
+* **Fraser Smith** -*Final Work* -  https://github.com/Fraser-A-N-Smith
 
 ## License
 
