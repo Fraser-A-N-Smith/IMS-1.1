@@ -1,5 +1,14 @@
+
+Coverage: 70%
+# Project Title
+
+Inventory Management System. 
+
+The system is accessed through the terminal and allows for the addition and subtraction of custoomers, items, and orders. It also allows for the update of any of the three and the addition of a number of items to an order.
+=======
 Coverage: 75.3%
 # IMS Project
+
 
 Creation of an inverntory management system to process and handle people, items, and orders.
 ## Getting Started
@@ -8,18 +17,28 @@ In the target folder, run the ims-0.0.1-jar-with-dependencies in the command lin
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Java compatible operating system
+2GB RAM
+Java 11
+
 
 Java 11
 A Java Capable Operating System
 4GB RAM
 ```
+
+System was successfully run on:
+ERAZER DEPUTY P10
+Intel I7
+RTX 2060
+=======
 Project was run on:
 
 ERAZER DEPUTY P10
 4GB RAM
 Intel I7
 RTX2060
+
 ```
 
 ### Installing
@@ -56,6 +75,7 @@ We use [SemVer](http://semver.org/) for versioning.
 * **Chris Perrins** - *Initial work* - [christophperrins](https://github.com/christophperrins)
 * **Fraser Smith** -*Final Work* -  https://github.com/Fraser-A-N-Smith
 
+
 ## License
 
 This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md) file for details 
@@ -64,6 +84,3 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc

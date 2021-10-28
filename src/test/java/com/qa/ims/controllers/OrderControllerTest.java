@@ -94,6 +94,14 @@ public class OrderControllerTest {
 	
 	@Test
 	public void testCalcValue() {
+		controller.calcValue();
+		assertEquals(1, 1);
+		
+	}
+	@Test
+	public void delFromOrderTest() {
+		controller.delFromOrder();
+		assertEquals(1, 1);
 		
 	}
 }
