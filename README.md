@@ -58,6 +58,9 @@ Tests are already set up. Access the main code with Eclipse and run coverage ove
 
 Access the target folder, run command line, then run the following command:
 
+You will be prompted in the console with the domain name you would like to access and edit. After selection you will be 
+prompted with which method you would like to use, CREATE, READ, UPDATE, DELETE, READALL.
+
 ```
 Java -jar ims-0.0.1-jar-with-dependencies
 ```
